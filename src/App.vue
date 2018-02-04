@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-    <link rel="stylesheet" href="css/foundation.min.css">
-    <h1 class="text-center">{{ title }}</h1>
-    <div>
-      <app-form></app-form>
-    </div>
-  </div> 
+    <app-form></app-form>
+  </div>
 </template>
 
 <script>
@@ -16,7 +12,7 @@ export default {
   name: 'app',
   data () {
     return {
-      title: '"Pico y Placa" Predictor'
+
     }
   }, 
   components: { 

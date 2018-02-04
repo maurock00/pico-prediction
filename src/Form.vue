@@ -1,38 +1,62 @@
 <template>
-<div>
-    <section class="row">
-        <div class="small-6 columns">
-            <form> 
-                <label for="plateNumber"> Plate Number </label>
-                <input type="text" name="plateNumber" id="plateNumber" 
-                    v-model="plateNumber">
-                
-                <label for="plateNumber"> Date </label>
-                <input type="date" name="dateOf" id="dateOf" 
-                    v-model="dateOf">
-                
-                <label for="timeOf"> Time </label>
-                <input type="time" name="timeOf" id="timeOf" 
-                    v-model="timeOf">   
+ <div class="container">
+        <form>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                    <h1 class="text-center">"Pico y placa" predictor</h1>
+                </div>
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 framed">
+                    <div class="form-group">
+                        <label for="plateNumber">Plate number</label>
+                        <input
+                                type="text"
+                                id="plateNumber"
+                                class="form-control"
+                                v-model="plateNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="dateOf">Date</label>
+                        <input
+                                type="date"
+                                id="dateOf"
+                                class="form-control"
+                                v-model="dateOf">
+                    </div>
+                    <div class="form-group">
+                        <label for="timeOf">Time</label>
+                        <input
+                                type="time"
+                                id="timeOf"
+                                class="form-control"
+                                v-model="timeOf">
+                    </div>
 
-                <button
-                    @click.prevent="calculateResult"> Predict !
-                </button>   
-            </form>
+                </div>
+            </div>
             <hr>
-        </div>
-    </section>
-        <div v-if="appLog.length >=1" class="log    ">
-            <h1> Results Log </h1>
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 text-center">
+                    <button
+                            class="btn btn-primary"
+                            @click.prevent="calculateResult">Predict!
+                    </button>
+                </div>
+            </div>
+        </form>
+        <hr>
+        <section class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 log framed" v-show=" appLog.length >=1 ">
+            <h2 class="text-center"> Results of your submits </h2>
+            <div class="small-12 columns">
                 <ul>
-                    <li v-for="item in appLog" :class="{ 'allowed': item.canTravel, 'prohibited': !item.canTravel}">
+                    <li v-for="item in appLog" :class="{ 'allowed': item.canTravel, 'prohibited': !item.canTravel }">   
                         {{ item.text }}
                     </li>
                 </ul>
-        </div>
-</div>
+            </div>
+        </section>
+    </div>
 </template>
-
+ 
 
 <script>
 export default {
@@ -117,7 +141,12 @@ export default {
 } 
 </script>
 
-<style>
+<style scoped>
+
+.log ul li {
+    padding: 3px;
+    margin: 5px;
+}
 
 .log ul .allowed {
     color: blue;
@@ -129,6 +158,16 @@ export default {
     color: red;
     background-color: #ffc0c1;
     margin: .5rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.framed { 
+    
+    border: solid .5px;
+    border-color: lightgrey;
 }
 
 </style>
